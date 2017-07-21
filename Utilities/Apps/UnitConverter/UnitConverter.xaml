@@ -1,0 +1,433 @@
+﻿<Page
+    x:Class="Utilities.Apps.UnitConverter.UnitConverter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Utilities.Apps.UnitConverter"
+    xmlns:localUtil="using:Utilities"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <!--<Style x:Key="LengthAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Distance"/>
+            <Setter Property="Content" Value="⌱"/>
+        </Style>
+        
+
+        
+        <Style x:Key="MassAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Mass"/>
+            <Setter Property="Content" Value="⍾"/>
+        </Style>
+
+        <Style x:Key="SpeedAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Speed"/>
+            <Setter Property="Content" Value="⍈"/>
+        </Style>
+
+        <Style x:Key="VolumeAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Volume"/>
+            
+            <Setter Property="Content" Value="㎥"/>
+        </Style>
+        
+        <Style x:Key="AreaAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Area"/>
+            
+            <Setter Property="Content" Value="㎡"/>
+        </Style>
+-->
+
+        <Style x:Key="CopyAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Copy"/>
+            <Setter Property="Content" Value="⎘"/>
+        </Style>
+
+        <Style x:Key="AppBarStyle" TargetType="AppBar">
+            <Setter Property="Padding" Value="40,0,0,0"/>
+        </Style>
+
+        <Style x:Key="ItemTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="#FF2A2A2A"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <Style x:Key="ItemSubtitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        
+        <Style x:Key="TileStyle"  TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="Width" Value="290" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+        
+        <Style x:Key="SelectedFilterStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20 0 0 0" />
+        </Style>
+
+        <Style x:Key="UnselectedFilterStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20 0 0 0" />
+        </Style>
+
+        <Style x:Key="SelectedFilterStyleSnapped" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5 0 0 0" />
+        </Style>
+
+        <Style x:Key="UnselectedFilterStyleSnapped" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5 0 0 0" />
+        </Style>
+
+        <DataTemplate x:Key="TileTemplate">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="2">
+                <Grid HorizontalAlignment="Left" Background="{Binding BackgroundColor}" 
+                      Width="290" Height="100">
+                    <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                        <Viewbox Width="265" Height="45" HorizontalAlignment="Left">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemTitleStyle}" VerticalAlignment="Center" 
+                                    Text="{Binding Title}"
+                                    HorizontalAlignment="Left" 
+                                    FontFamily="Segoe UI" />
+                        </Viewbox>
+                        <Viewbox Width="265" Height="50" HorizontalAlignment="Right">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemSubtitleStyle}" 
+                                        VerticalAlignment="Center" 
+                                        Text="{Binding Result}"
+                                        Margin="0 0 10 5"
+                                        HorizontalAlignment="Left"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        
+        <Style x:Key="TileStyleSnapped"  TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="75" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+
+        <DataTemplate x:Key="TileTemplateSnapped">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="2">
+                <Grid HorizontalAlignment="Left" Background="{Binding BackgroundColor}" 
+                      Width="250" Height="75">
+                    <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                        <Viewbox Width="230" Height="35" HorizontalAlignment="Left">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemTitleStyle}" VerticalAlignment="Center" 
+                                    Text="{Binding Title}"
+                                    HorizontalAlignment="Left" 
+                                    FontFamily="Segoe UI" />
+                        </Viewbox>
+                        <Viewbox Width="230" Height="40" HorizontalAlignment="Right">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemSubtitleStyle}" 
+                                        VerticalAlignment="Center" 
+                                        Text="{Binding Result}"
+                                        Margin="0 0 10 5"
+                                        HorizontalAlignment="Left"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Style="{StaticResource Generic_PageBackground}" Margin="0 0 0 20">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="Full"/>
+                <VisualState x:Name="Fill" />
+                <VisualState x:Name="Portrait" />
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FontSize)" 
+                                                       Storyboard.TargetName="txtSelectedUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    25
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FontSize)" 
+                                                       Storyboard.TargetName="txtUnitAmount">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    25
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FontSize)" 
+                                                       Storyboard.TargetName="txtSelectAUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    25
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FontSize)" 
+                                                       Storyboard.TargetName="txtSelectedFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    25
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtSelectedUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtSelectedFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtUnitAmount">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtSelectAUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,10,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="imgLine">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="imgLine2">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="stackConvertControls">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="stackFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>10,0,10,10</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames> 
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="txtSelectedUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    1
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="txtSelectedFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    2
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" 
+                                                       Storyboard.TargetName="txtSelectedUnit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    0
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" 
+                                                       Storyboard.TargetName="txtSelectedFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    0
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+                    
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!--Title Row-->
+        <localUtil:TitleRow x:Name="title" Grid.Row="0" />
+        
+        <!--Status Text-->
+        <TextBlock x:Name="txtStatus" Grid.Row="1" FontSize="20" Foreground="Black" Margin="20 0 0 0" />
+        <Button x:Name="Hidden" Grid.Row="1" Opacity="0" Width="0" Height="0" HorizontalAlignment="Right" />
+
+        <!--Conversion Controls-->
+        <Grid x:Name="stackConvertControls" Grid.Row="2" Margin="20 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition Width="*" x:Name="controlColumn" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" x:Name="LineRow"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="txtUnitAmount" Text="1" FontSize="50"                     
+                     TextAlignment="Left" Margin="0 0 0 0"
+                     KeyUp="txtUnitAmount_KeyUp_1" GotFocus="txtUnitAmount_GotFocus_1" Foreground="Gray" 
+                     FontFamily="Segoe UI"
+                     FontWeight="Light" Grid.Column="0" LostFocus="txtUnitAmount_LostFocus_1" 
+                     VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" 
+                     InputScope="TelephoneNumber" />
+
+            <TextBox x:Name="txtSelectedUnit" Text="meters" FontSize="50" 
+                     GotFocus="txtSelectedUnit_GotFocus_1" KeyUp="txtSelectedUnit_KeyUp_1" 
+                     VerticalAlignment="Center"
+                     Margin="10 0 0 0" Foreground="#808080" FontFamily="Segoe UI" FontWeight="Light" 
+                     Grid.Column="2" Grid.Row="0" />
+            
+            <Image Source="Assets/bluepixel.png" Stretch="Fill" Width="1" Grid.Column="1" 
+                   Grid.Row="0" Margin="10 10 0 0" x:Name="imgLine" VerticalAlignment="Center" />
+
+            <Image Source="Assets/bluepixel.png" Stretch="Fill" Width="1" Grid.Column="3" 
+                   Grid.Row="0" Margin="10 10 0 0" x:Name="imgLine2" VerticalAlignment="Center" />
+
+            <TextBox x:Name="txtSelectedFilter" Text="Common" FontSize="50" GotFocus="txtSelectedFilter_GotFocus_1"
+                     KeyUp="txtSelectedFilter_KeyUp_1" VerticalAlignment="Center" Margin="10 0 0 0"
+                     Foreground="#808080" FontFamily="Segoe UI" FontWeight="Light" Grid.Column="4" Grid.Row="0" />           
+
+
+            <TextBlock x:Name="txtSelectAUnit" Text="select a unit..." FontSize="50" 
+                       VerticalAlignment="Center"
+                    Margin="20 0 0 0" Foreground="Black" FontFamily="Segoe UI" FontWeight="Light" 
+                       Grid.Column="0" Visibility="Collapsed" Grid.Row="0" />
+        </Grid>
+
+        <!--Grid/List View-->
+        <GridView x:Name="ItemGridView" Width="Auto" Height="Auto" IsTabStop="False" Grid.Row="3"
+                  ItemTemplate="{StaticResource TileTemplate}"
+                  ItemContainerStyle="{StaticResource TileStyle}"
+                  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" IsItemClickEnabled="True" 
+                  SelectionMode="Single"
+                  Visibility="Visible" ItemClick="ItemGridView_ItemClick_1" 
+                  SelectionChanged="ItemGridView_SelectionChanged_1">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection/>
+            </GridView.ItemContainerTransitions>
+        </GridView>
+
+        <ListView x:Name="ItemListView" Width="Auto" Height="Auto" IsTabStop="False" Grid.Row="3"
+                  ItemTemplate="{StaticResource TileTemplateSnapped}"
+                  ItemContainerStyle="{StaticResource TileStyleSnapped}"
+                  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" IsItemClickEnabled="True" 
+                  SelectionMode="Single"
+                  Visibility="Collapsed" Margin="0 0 10 30" ItemClick="ItemGridView_ItemClick_1" 
+                  SelectionChanged="ItemGridView_SelectionChanged_1">
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection />
+            </ListView.ItemContainerTransitions>
+        </ListView>
+
+        <!--Filter Controls-->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" x:Name="stackFilter" Margin="10 0 0 30">
+            <TextBlock x:Name="txtFilter" Foreground="Black" Text="Filter: " FontSize="20" 
+                       VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>            
+            
+            <StackPanel Orientation="Horizontal" x:Name="stackFilterControls" />
+        </StackPanel>
+       
+    </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="appbar" Style="{StaticResource AppBarStyle}" Opened="appbar_Opened" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="copyButton" Style="{StaticResource CopyAppBarButtonStyle}" 
+                        Grid.Column="1" Click="btnCopy_Click_1" />
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>

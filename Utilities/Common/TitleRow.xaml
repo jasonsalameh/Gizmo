@@ -1,0 +1,186 @@
+﻿<UserControl
+    x:Class="Utilities.TitleRow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Utilities"
+    xmlns:common="using:Utilities.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="75"
+    d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <Style x:Key="BackButtonBlackStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="56"/>
+            <Setter Property="AutomationProperties.AutomationId" Value="BackButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Back"/>
+            <Setter Property="AutomationProperties.ItemType" Value="Navigation Button"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid">
+                            <Grid Margin="-1,-16,0,0">
+                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" Foreground="White"/>
+                                <TextBlock x:Name="NormalGlyph" Text="{StaticResource BackButtonGlyph}" Foreground="Black"/>
+                                <TextBlock x:Name="ArrowGlyph" Text="&#xE0A6;" Foreground="White" Opacity="0"/>
+                            </Grid>
+                            <Rectangle
+                            x:Name="FocusVisualWhite"
+                            IsHitTestVisible="False"
+                            Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                            StrokeEndLineCap="Square"
+                            StrokeDashArray="1,1"
+                            Opacity="0"
+                            StrokeDashOffset="1.5"/>
+                            <Rectangle
+                            x:Name="FocusVisualBlack"
+                            IsHitTestVisible="False"
+                            Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                            StrokeEndLineCap="Square"
+                            StrokeDashArray="1,1"
+                            Opacity="0"
+                            StrokeDashOffset="0.5"/>
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NormalGlyph" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Black"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Black"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="ArrowGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="NormalGlyph"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ViewboxStyle" TargetType="Viewbox">
+            <!--<Setter Property="Width" Value="310" />-->
+            <!--<Setter Property="Height" Value="80" />-->
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0 0 20 0" />
+        </Style>
+        
+        <Style x:Key="BreadcrumbStyle" TargetType="TextBlock" >
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />     
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="FontFamily" Value="Segoe UI Light" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontSize" Value="45" />
+            <!--<Setter Property="FontFamily" Value="Segoe UI Light"></Setter>
+            <Setter Property="FontSize" Value="60"></Setter>
+            <Setter Property="Foreground" Value="GhostWhite"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Light"></Setter>-->
+        </Style>
+        
+        <Style x:Key="BreadcrumbButtonStyle" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="45" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="FontFamily" Value="Segoe UI Light" />
+        </Style>
+
+        <Style x:Key="ClockStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#606060" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontFamily" Value="Segoe UI Light" />
+        </Style>
+
+    </UserControl.Resources>
+   
+    <Grid x:Name="LayoutRoot" Background="white">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" x:Name="stackTitle" Margin="0 0 0 0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">
+            <Button Style="{StaticResource BackButtonBlackStyle}" x:Name="btnBack" Click="btnBack_Click_1" VerticalAlignment="Center" 
+                    Margin="20 5 20 0"></Button>
+            
+            <StackPanel Orientation="Horizontal" x:Name="stackCrumbs" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Left" >
+                <!--<TextBlock Style="{StaticResource BreadcrumbStyle}" Text="Calculator" Margin="0,11,0,0"/>-->
+            </StackPanel>
+            
+        </StackPanel>
+
+        <common:TimeViewer x:Name="TimeControl"  Margin="0 0 0 0" Grid.Column="2" Grid.Row="0" />
+
+        <!--<StackPanel Orientation="Vertical" x:Name="stackTime" Margin="0 10 10 0" Grid.Column="2" PointerReleased="timerTapped" 
+                    Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock x:Name="txtTime" Text="Time" Style="{StaticResource ClockStyle}"/>
+            <TextBlock x:Name="txtDate" Text="Date" Style="{StaticResource ClockStyle}"/>
+        </StackPanel>-->
+
+    </Grid>
+</UserControl>

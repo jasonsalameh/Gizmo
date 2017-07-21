@@ -1,0 +1,2 @@
+﻿When in snapped view the back button doesn't work on a specific calc view
+in PCAL edit button doesn't work

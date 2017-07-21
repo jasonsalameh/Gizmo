@@ -1,0 +1,3 @@
+﻿1. Snapping and viewmodes
+4. Fertility calculations
+5. Add and Edit storyboard transitions

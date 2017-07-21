@@ -1,0 +1,2 @@
+﻿Calc landing page doesn't go into snapped view if you're on the page THEN go into snapped view
+Calc doesn't have the breadcrumb bar

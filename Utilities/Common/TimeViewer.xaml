@@ -1,0 +1,44 @@
+﻿<UserControl
+    x:Class="Utilities.Common.TimeViewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Utilities.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="75"
+    d:DesignWidth="310">
+    
+    <UserControl.Resources>
+        <Style x:Key="ClockStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#ffffff" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="FontFamily" Value="Segoe UI Light" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="RootGrid">
+        <Grid VerticalAlignment="Center" Height="75" Width="310" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="75" />
+                <ColumnDefinition Width="145" />
+                <ColumnDefinition Width="45" />
+            </Grid.ColumnDefinitions>
+
+            <Polygon x:Name="InnerAppBar" Grid.Column="0" Grid.ColumnSpan="4" 
+                     Points="45,0 0,75 345,75 345,0" Fill="Gray" />
+
+            <StackPanel Orientation="Vertical" x:Name="stackTime" Grid.Column="2" PointerReleased="timerTapped" 
+                    Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock x:Name="txtTime" Text="Time" Style="{StaticResource ClockStyle}"/>
+                <TextBlock x:Name="txtDate" Text="Date" Style="{StaticResource ClockStyle}"/>
+            </StackPanel>
+            
+            <TextBlock Text="?" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="60" Foreground="White"
+                       PointerReleased="TextBlock_PointerReleased"/>
+        </Grid>
+    </Grid>
+</UserControl>

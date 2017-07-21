@@ -1,0 +1,599 @@
+﻿<Page
+    x:Class="Notepad.Notepad_MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Utilities"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="ß" FontFamily="Wingdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" Foreground="White" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NewDocumentStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="2" FontFamily="Wingdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OpenDocumentStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="1" FontFamily="Wingdings" FontSize="25" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SaveButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="&lt;" FontFamily="Wingdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SaveAsButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="=" FontFamily="Wingdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ClearMRUButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="û" FontFamily="Wingdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrintButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="Black" 
+                                                            Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="ButtonEllipse" />
+                                            <ColorAnimation Duration="0" To="White" 
+                                                            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+                                                            Storyboard.TargetName="Glyph" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel Orientation="Vertical">
+                                <Grid  Margin="0,14,0,5" >
+                                    <Ellipse x:Name="ButtonEllipse" Height="40" Width="40" Fill="Transparent" HorizontalAlignment="Center"
+											 Stroke="Black" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="Glyph" Text="Ê" FontFamily="Webdings" FontSize="30" HorizontalAlignment="Center"
+											   VerticalAlignment="Center" />
+                                </Grid>
+                                <TextBlock Text="{TemplateBinding Content}" HorizontalAlignment="Center"
+										   FontFamily="Segoe UI" FontSize="12" Foreground="Black"/>
+                            </StackPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="AppBarStyle" TargetType="AppBar">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="40,0,40,0"/>
+        </Style>
+
+        <Style x:Key="ItemTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="#FF2A2A2A"/>
+            <Setter Property="FontSize" Value="14.667"/>
+        </Style>
+
+        <Style x:Key="ItemSubtitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="#FF707070"/>
+            <Setter Property="FontSize" Value="14.667"/>
+        </Style>
+
+        <Style x:Key="StoreFrontTileStyle"  TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+
+        <ItemsPanelTemplate x:Key="StoreFrontGridItemsPanelTemplate">
+            <!--<WrapGrid MaximumRowsOrColumns="25" VerticalChildrenAlignment="Top"
+					  HorizontalChildrenAlignment="Left" Margin="0,0,0,0"/>-->
+            <VirtualizingStackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="StoreFrontGridItemsPanelTemplateSnapped">
+            <WrapGrid MaximumRowsOrColumns="3" VerticalChildrenAlignment="Top"
+					  HorizontalChildrenAlignment="Left" Margin="0,0,0,0"/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="StoreFrontTileTemplate">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="2">
+
+                <Grid HorizontalAlignment="Left" Background="White" 
+                      PointerEntered="Grid_PointerEntered"
+                      PointerExited="Grid_PointerExited"
+                      PointerPressed="Grid_PointerPressed"
+                      Width="270" Height="50">
+
+                    <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                        <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemTitleStyle}"                                  VerticalAlignment="Center" 
+                                    Text="{Binding Title}"
+                                    HorizontalAlignment="Left" 
+                                    FontFamily="Segoe UI" />
+                        <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemSubtitleStyle}" 
+                                    MaxHeight="20" VerticalAlignment="Center" 
+                                    Text="{Binding FileName}"
+                                    Margin="5 0 0 0"
+                                    HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="Full"/>
+                <VisualState x:Name="Fill" />
+                <VisualState x:Name="Portrait" />
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="ButtonGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    5
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="RecentGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    4
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" 
+                                                       Storyboard.TargetName="RecentGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    1
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.RowSpan)" 
+                                                       Storyboard.TargetName="RecentGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    1
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background)" 
+                                                       Storyboard.TargetName="ButtonGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#F4F4F4" />
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="ButtonGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="RecentGrid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="btnNewNote">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,20,10</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="btnOpenNote">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,20,10</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="btnSaveAs">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,20,10</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <!--<TextBlock x:Name="PrintingRoot" Opacity="0" FontFamily="Calibri" FontSize="20" />-->
+        
+        <Grid x:Name="ContentRoot" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" x:Name="contentTitleRow" />
+                <RowDefinition Height="Auto" x:Name="contentNoteName" />
+                <RowDefinition Height="Auto" x:Name="contentLine" />
+                <RowDefinition Height="*" x:Name="contentText" />
+                <RowDefinition Height="Auto" x:Name="contentButtonsOrRecent" />
+                <RowDefinition Height="Auto" x:Name="contentButtonFloater" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" x:Name="col0" />
+                <ColumnDefinition Width="*" x:Name="col1" />
+            </Grid.ColumnDefinitions>
+            
+            <!--<Canvas x:Name="PrintCanvas" Opacity="0" ></Canvas>-->
+
+            <local:TitleRow x:Name="TitleRow" Grid.Row="0" Grid.ColumnSpan="2" />
+
+            <!--note name-->                
+            <TextBox Text="Untitled" FontSize="30"  Name="txtNoteName"
+                GotFocus="txtNoteName_GotFocus" IsSpellCheckEnabled="False" 
+                IsTextPredictionEnabled="False" FontFamily="Segoe UI" FontWeight="Light"
+                Foreground="Black" TextChanged="txtNoteName_TextChanged" VerticalAlignment="Center" 
+                TabIndex="0" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Margin="30 0 0 0"/>
+            
+            <Image Source="../../Common/bluepixel.png" Stretch="Fill" Height="1" Grid.Column="1" Grid.Row="2" Margin="30 15 0 0" x:Name="imgLine" HorizontalAlignment="Left" />
+
+            <!--<Grid x:Name="sizeGrid" Grid.Row="1" Grid.Column="1">
+                <Border Margin="15 30 15 0" BorderBrush="LightGray" BorderThickness="2" Grid.Row="1" Grid.Column="1"
+                        CornerRadius="5">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                  ZoomMode="Enabled" x:Name="scrollViewer" IsZoomInertiaEnabled="False" 
+                                  IsZoomChainingEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" 
+                                  IsRightTapEnabled="False" HorizontalScrollMode="Disabled">
+                        <TextBox x:Name="txtContent" TextWrapping="Wrap"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 ScrollViewer.ZoomMode="Enabled" ScrollViewer.IsZoomInertiaEnabled="False" ScrollViewer.IsZoomChainingEnabled="False"                                 
+                             AcceptsReturn="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True"
+                                 Text=" " GotFocus="txtContent_GotFocus" TextChanged="txtContent_TextChanged" 
+                                 IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False" 
+                                 TabIndex="1" Width="{Binding ElementName=sizeGrid, Path=ActualWidth}" Height="{Binding ElementName=sizeGrid, Path=ActualHeight}" SizeChanged="txtContent_SizeChanged_1" />
+                    </ScrollViewer>
+                </Border>
+            </Grid>-->
+
+            <!--<Grid x:Name="sizeGrid" Grid.Row="1" Grid.Column="1">
+                <Border Margin="15 30 15 0" BorderBrush="LightGray" BorderThickness="2" Grid.Row="1" Grid.Column="1" CornerRadius="5">
+                    <ScrollViewer x:Name="TextScrollViewer" ZoomMode="Enabled" IsZoomInertiaEnabled="False" IsZoomChainingEnabled="False" HorizontalScrollBarVisibility="Disabled" 
+                                  VerticalScrollBarVisibility="Disabled">
+                                    <TextBox x:Name="txtContent" TextWrapping="Wrap" ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Enabled"
+                                             AcceptsReturn="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True"
+                                             Text=" " GotFocus="txtContent_GotFocus" TextChanged="txtContent_TextChanged" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False" 
+                                             TabIndex="1" Width="{Binding ElementName=TextScrollViewer, Path=ActualWidth}" Height="{Binding ElementName=TextScrollViewer, Path=Height}" 
+                                             SizeChanged="txtContent_SizeChanged_1" />
+                    </ScrollViewer>
+                </Border>
+            </Grid>-->
+
+            <!--<Grid x:Name="sizeGrid" Grid.Row="1" Grid.Column="1">
+                <Border Margin="15 30 15 0" BorderBrush="LightGray" BorderThickness="2" Grid.Row="1" Grid.Column="1" CornerRadius="5">
+                    <ScrollViewer x:Name="TextScrollViewer" ZoomMode="Enabled" IsZoomInertiaEnabled="False" IsZoomChainingEnabled="False" HorizontalScrollBarVisibility="Auto" 
+                                  VerticalScrollBarVisibility="Disabled" HorizontalScrollMode="Enabled"  VerticalScrollMode="Disabled">
+                                    <TextBox x:Name="txtContent" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                             ScrollViewer.VerticalScrollMode="Enabled" AcceptsReturn="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" Text=" " GotFocus="txtContent_GotFocus" 
+                                             TextChanged="txtContent_TextChanged" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False" TabIndex="1" 
+                                             Width="{Binding ElementName=TextScrollViewer, Path=ActualWidth}" Height="{Binding ElementName=TextScrollViewer, Path=Height}" SizeChanged="txtContent_SizeChanged_1" />
+                    </ScrollViewer>
+                </Border>
+            </Grid>-->
+
+            <!--content-->
+            <Grid x:Name="sizeGrid" Grid.Row="3" Grid.Column="1" ManipulationMode="Scale" Margin="30 30 0 0">
+
+                <TextBox x:Name="txtContent" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                        ScrollViewer.VerticalScrollMode="Enabled" AcceptsReturn="True" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" Text=" " GotFocus="txtContent_GotFocus" 
+                        TextChanged="txtContent_TextChanged" IsRightTapEnabled="False" IsHoldingEnabled="False" 
+                        IsDoubleTapEnabled="False" TabIndex="1" FontFamily="Segoe UI" FontSize="20" KeyDown="txtContent_KeyUp_1"   />
+            </Grid>
+            
+            <Grid x:Name="RecentGrid" Grid.Column="0" Grid.Row="1" Grid.RowSpan="4" Background="#F4F4F4" Margin="0 0 15 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" x:Name="recentTextBlock" />
+                    <RowDefinition Height="Auto" x:Name="recentSpacer" />
+                    <RowDefinition Height="*" x:Name="recentList" />
+                </Grid.RowDefinitions>
+
+                <!--recent files text-->
+                <TextBlock x:Name="txtRecent" Text="Recent Files" FontSize="30" FontFamily="Segoe UI" FontWeight="Light"
+                        Foreground="Black" Visibility="Visible" VerticalAlignment="Center" Margin="35 0 15 0" Grid.Row="0" />
+
+                <!--recent files list-->
+                <TextBlock x:Name="txtLoading" Text="Loading..." FontSize="30" FontFamily="Segoe UI" FontWeight="Light" 
+                           Foreground="#00A2E8" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" />
+                <ListView x:Name="ItemGridView" Width="Auto" Height="Auto" IsTabStop="False" Margin="15 30 15 0" Grid.Row="1"
+                    ItemTemplate="{StaticResource StoreFrontTileTemplate}"
+                    ItemContainerStyle="{StaticResource StoreFrontTileStyle}"
+                    ItemsPanel="{StaticResource StoreFrontGridItemsPanelTemplate}"
+                    VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionMode="None" ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Auto"
+                    Visibility="Visible" IsItemClickEnabled="True" ItemClick="ItemGridView_ItemClick"
+                    CanReorderItems="False"/>
+
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="4" x:Name="ButtonGrid" Margin="0 0 20 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+            
+                <Button Content="New Note" x:Name="btnNewNote" Click="btnNewNote_Click"
+                                Style="{StaticResource NewDocumentStyle}" HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 20 0" Grid.Column="1"/>
+                <Button Content="Open Note" x:Name="btnOpenNote" 
+                                Style="{StaticResource OpenDocumentStyle}" HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" IsTabStop="False" Click="btnOpenNote_Click" Margin="0 0 20 0" Grid.Column="2"/>
+                <Button Content="Save As" Style="{StaticResource SaveAsButtonStyle}" x:Name="btnSaveAs"
+                                    Click="btnSaveAs_Click" Opacity="0" IsTabStop="False" Margin="0 0 20 0" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="3" />
+
+                <Button Content="Clear Recent Files" Style="{StaticResource ClearMRUButtonStyle}" 
+                        x:Name="btnClear" Click="btnClear_Click" Visibility="Collapsed" IsTabStop="False" 
+                        Margin="0 0 20 0" Grid.Column="4" />
+                <!--<Button Content="Print" Style="{StaticResource PrintButtonStyle}" x:Name="btnPrint"
+                        Click="btnPrint_Click" IsTabStop="False" Margin="0 0 20 0" />-->
+                
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>

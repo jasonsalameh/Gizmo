@@ -1,0 +1,407 @@
+﻿<Page
+    x:Class="Utilities.Apps.UnitConverter.UnitConverter_MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Utilities.Apps.UnitConverter"
+    xmlns:localUtil="using:Utilities"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style x:Key="LengthAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Distance"/>
+            <Setter Property="Content" Value="⌱"/>
+        </Style>
+        
+        <Style x:Key="CopyAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Copy"/>
+            <Setter Property="Content" Value="⎘"/>
+        </Style>
+        
+        <Style x:Key="MassAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="BlackAddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Mass"/>
+            <Setter Property="Content" Value="⍾"/>
+        </Style>
+
+        <Style x:Key="SpeedAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Speed"/>
+            <Setter Property="Content" Value="⍈"/>
+        </Style>
+
+        <Style x:Key="VolumeAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Volume"/>
+            <!--<Setter Property="Content" Value="⏣"/>-->
+            <Setter Property="Content" Value="㎥"/>
+        </Style>
+        
+        <Style x:Key="AreaAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Area"/>
+            <!--<Setter Property="Content" Value="⟄"/>-->
+            <Setter Property="Content" Value="㎡"/>
+        </Style>
+
+        <Style x:Key="AppBarStyle" TargetType="AppBar">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="40,0,0,0"/>
+        </Style>
+
+        <Style x:Key="ItemTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="#FF2A2A2A"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <Style x:Key="ItemSubtitleStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        
+        <Style x:Key="TileStyle"  TargetType="GridViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="Width" Value="290" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+        
+        <DataTemplate x:Key="TileTemplate">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="2">
+                <Grid HorizontalAlignment="Left" Background="{Binding BackgroundColor}" 
+                      Width="290" Height="100">
+                    <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                        <Viewbox Width="265" Height="45" HorizontalAlignment="Left">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemTitleStyle}" VerticalAlignment="Center" 
+                                    Text="{Binding Title}"
+                                    HorizontalAlignment="Left" 
+                                    FontFamily="Segoe UI" />
+                        </Viewbox>
+                        <Viewbox Width="265" Height="50" HorizontalAlignment="Right">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemSubtitleStyle}" 
+                                        VerticalAlignment="Center" 
+                                        Text="{Binding Result}"
+                                        Margin="0 0 10 5"
+                                        HorizontalAlignment="Left"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        
+        <Style x:Key="TileStyleSnapped"  TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="75" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="8,8,8,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Local" />
+        </Style>
+
+        <DataTemplate x:Key="TileTemplateSnapped">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="2">
+                <Grid HorizontalAlignment="Left" Background="{Binding BackgroundColor}" 
+                      Width="250" Height="75">
+                    <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                        <Viewbox Width="230" Height="35" HorizontalAlignment="Left">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemTitleStyle}" VerticalAlignment="Center" 
+                                    Text="{Binding Title}"
+                                    HorizontalAlignment="Left" 
+                                    FontFamily="Segoe UI" />
+                        </Viewbox>
+                        <Viewbox Width="230" Height="40" HorizontalAlignment="Right">
+                            <TextBlock TextWrapping="Wrap" Style="{StaticResource ItemSubtitleStyle}" 
+                                        VerticalAlignment="Center" 
+                                        Text="{Binding Result}"
+                                        Margin="0 0 10 5"
+                                        HorizontalAlignment="Left"/>
+                        </Viewbox>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Style="{StaticResource Generic_PageBackground}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="Full"/>
+                <VisualState x:Name="Fill" />
+                <VisualState x:Name="Portrait" />
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="gridFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    3
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" 
+                                                       Storyboard.TargetName="gridFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    Left
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.FontSize)" 
+                                                       Storyboard.TargetName="btnConvert">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    20
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="btnConvert">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5, 0, 0, 0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
+                                                       Storyboard.TargetName="txtUnitAmount">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    194
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtUnitAmount">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5, 0, 5, 0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="cmbUnits">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5, 20, 0, 0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" 
+                                                       Storyboard.TargetName="cmbUnits">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    1
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" 
+                                                       Storyboard.TargetName="cmbUnits">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    0
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.FontSize)" 
+                                                       Storyboard.TargetName="txtShow">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    20
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtShow">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5, 0, 0, 0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)" 
+                                                       Storyboard.TargetName="txtEnd">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    0
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>-->
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="txtEnd">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0, 0, 0, 0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
+                                                       Storyboard.TargetName="cmbFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    250
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" 
+                                                       Storyboard.TargetName="cmbFilter">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>5, 0, 0, 10</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
+                                                       Storyboard.TargetName="ItemGridView">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    300
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)" 
+                                                       Storyboard.TargetName="stackAppBar">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    0
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)" 
+                                                       Storyboard.TargetName="cmbAppBar">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    1
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.IsHitTestVisible)" 
+                                                       Storyboard.TargetName="cmbAppBar">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    True
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalScrollBarVisibility)" 
+                                                       Storyboard.TargetName="svAppScroller">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    Disabled
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>  
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <localUtil:TitleRow x:Name="title" Grid.Row="0" />
+        <TextBlock x:Name="txtStatus" Grid.Row="1" FontSize="20" Foreground="Black" Margin="20 0 0 0" />
+
+        <Grid x:Name="convertGrid" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="stackConvertControls" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0 20 0 0">
+                <Button x:Name="btnConvert" Content="Convert" FontSize="30" Click="btnConvert_Click_1" Margin="20 0 0 0" Foreground="Black" BorderBrush="Black" />
+                <TextBox x:Name="txtUnitAmount" Text="1" FontSize="30" Width="200" Margin="20 0 0 0" TextAlignment="Right" VerticalAlignment="Center" 
+                     KeyUp="txtUnitAmount_KeyUp_1" Foreground="Black" BorderBrush="Black" />                
+            </StackPanel>
+
+            <ComboBox x:Name="cmbUnits" Foreground="Black" BorderBrush="Black" MaxWidth="300" Margin="20 20 0 0" FontSize="20" Grid.Row="0" Grid.Column="1" KeyUp="cmbUnitKey" SelectionChanged="cmbUnits_SelectionChanged_1" />
+        </Grid>
+        
+        <!--This grid moves to row 3 when snapped-->
+        <Grid x:Name="gridFilter" Grid.Row="2" HorizontalAlignment="Right" Margin="0 20 0 0">
+           <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="txtShow" Foreground="Black" Text="Filter: " FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Grid.Column="0" />
+            <ComboBox x:Name="cmbFilter" MaxWidth="300" Foreground="Black" BorderBrush="Black" Margin="0 0 20 0" FontSize="20" KeyUp="cmbFilterKey" HorizontalAlignment="Right" SelectionChanged="cmbFilter_SelectionChanged_1" Grid.Column="1" />
+            <!--<TextBlock x:Name="txtEnd" Text="Units" FontSize="30" VerticalAlignment="Center" Margin="0 0 20 0" Grid.Column="2" />-->
+        </Grid>
+
+        <GridView x:Name="ItemGridView" Width="Auto" Height="Auto" IsTabStop="False" Grid.Row="4"
+                  ItemTemplate="{StaticResource TileTemplate}"
+                  ItemContainerStyle="{StaticResource TileStyle}"
+                  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" IsItemClickEnabled="False" SelectionMode="Single"
+                   Visibility="Visible" SelectionChanged="ItemGridView_SelectionChanged_1"/>
+
+        <ListView x:Name="ItemListView" Width="Auto" Height="Auto" IsTabStop="False" Grid.Row="4"
+                  ItemTemplate="{StaticResource TileTemplateSnapped}"
+                  ItemContainerStyle="{StaticResource TileStyleSnapped}"
+                  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" IsItemClickEnabled="False" SelectionMode="Single"
+                  Visibility="Collapsed" Margin="0 0 10 0" SelectionChanged="ItemGridView_SelectionChanged_1"/>
+
+        <AppBar x:Name="appbar" Grid.Row="5" IsOpen="True" IsSticky="True" IsTabStop="False" VerticalAlignment="Bottom">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer x:Name="svAppScroller" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left"
+                                    VerticalAlignment="Top" x:Name="stackAppBar">
+                        <Button x:Name="btnArea" Click="btnArea_Click_1" Style="{StaticResource AreaAppBarButtonStyle}" HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" />
+                        <Button x:Name="btnLength" Click="btnLength_Click_1" Style="{StaticResource LengthAppBarButtonStyle}" HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" />
+                        <Button x:Name="btnMass" Click="btnMass_Click_1" Style="{StaticResource MassAppBarButtonStyle}" HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" />
+                        <Button x:Name="btnSpeed" Click="btnSpeed_Click_1" Style="{StaticResource SpeedAppBarButtonStyle}" HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" />                        
+                        <Button x:Name="btnVolume" Click="btnVolume_Click_1" Style="{StaticResource VolumeAppBarButtonStyle}" HorizontalAlignment="Left" 
+                                VerticalAlignment="Top" IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" />                    
+                    </StackPanel>                    
+                </ScrollViewer>
+                
+                <ComboBox x:Name="cmbAppBar" Width="180" FontSize="30" Height="40" Margin="5 20 5 10" Grid.Column="0" Opacity="0" 
+                          SelectionChanged="cmbAppBar_SelectionChanged_1" IsHitTestVisible="False">
+                    <ComboBoxItem>Length</ComboBoxItem>
+                    <ComboBoxItem>Mass</ComboBoxItem>
+                    <ComboBoxItem>Speed</ComboBoxItem>
+                    <ComboBoxItem>Volume</ComboBoxItem>
+                    <ComboBoxItem>Area</ComboBoxItem>
+                </ComboBox>
+                 
+                <Button x:Name="btnCopy" Style="{StaticResource CopyAppBarButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                         IsTabStop="False" Margin="0 0 10 0" Padding="0" FontSize="30" Grid.Column="1" Click="btnCopy_Click_1" Visibility="Collapsed" />
+            </Grid>
+        </AppBar>
+
+    </Grid>
+</Page>

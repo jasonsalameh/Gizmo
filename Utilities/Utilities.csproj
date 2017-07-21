@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{DFC67021-6742-4C6A-BB07-2F7ADD9F066A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Utilities</RootNamespace>
+    <AssemblyName>Utilities</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Utilities_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundle>Always</AppxBundle>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Apps\Calculator\CalcViews\SnappedProgrammer.xaml.cs">
+      <DependentUpon>SnappedProgrammer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\SmallScientific.xaml.cs">
+      <DependentUpon>SmallScientific.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\SnappedStatistical.xaml.cs">
+      <DependentUpon>SnappedStatistical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\SnappedScientific.xaml.cs">
+      <DependentUpon>SnappedScientific.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\PortraitStatistical.xaml.cs">
+      <DependentUpon>PortraitStatistical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\PortraitProgrammer.xaml.cs">
+      <DependentUpon>PortraitProgrammer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\Calc_LandingPage.xaml.cs">
+      <DependentUpon>Calc_LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\ViewInterface\ProgrammerView.cs" />
+    <Compile Include="Apps\Calculator\ViewInterface\ScientificView.cs" />
+    <Compile Include="Apps\PCalender\CalculateDateDifference.cs" />
+    <Compile Include="Apps\PCalender\Views\AddView.xaml.cs">
+      <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PCalender\Views\EditView.xaml.cs">
+      <DependentUpon>EditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\PortraitScientific.xaml.cs">
+      <DependentUpon>PortraitScientific.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\Programmer.xaml.cs">
+      <DependentUpon>Programmer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\Scientific.xaml.cs">
+      <DependentUpon>Scientific.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\CalcViews\Statistical.xaml.cs">
+      <DependentUpon>Statistical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\Calc_MainPage.xaml.cs">
+      <DependentUpon>Calc_MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\Classes\EvaluationEngine.cs" />
+    <Compile Include="Apps\Calculator\Classes\CalcHelpers.cs" />
+    <Compile Include="Apps\Calculator\Classes\InputValue.cs" />
+    <Compile Include="Apps\Calculator\Classes\TextParser.cs" />
+    <Compile Include="Apps\Calculator\Classes\TextWindow.cs" />
+    <Compile Include="Apps\Calculator\MemoryItem.xaml.cs">
+      <DependentUpon>MemoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Calculator\ViewInterface\CalculatorView.cs" />
+    <Compile Include="Apps\Notepad\NotepadData.cs" />
+    <Compile Include="Apps\Notepad\NotepadItem.cs" />
+    <Compile Include="Apps\Notepad\Notepad_MainPage.xaml.cs">
+      <DependentUpon>Notepad_MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PCalender\CalendarDay.xaml.cs">
+      <DependentUpon>CalendarDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PCalender\CalendarMonth.xaml.cs">
+      <DependentUpon>CalendarMonth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\UnitConverter\Conversions\AccelerationUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\AnglesUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\CurrentUnit.cs" />
+    <Compile Include="Apps\UnitConverter\UnitConverter_LandingPage.xaml.cs">
+      <DependentUpon>UnitConverter_LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\BreadCrumbItem.xaml.cs">
+      <DependentUpon>BreadCrumbItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DatePicker.xaml.cs">
+      <DependentUpon>DatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PCalender\PCal_MainPage.xaml.cs">
+      <DependentUpon>PCal_MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PCalender\Period.cs" />
+    <Compile Include="Common\Breadcrumb.cs" />
+    <Compile Include="Common\ShowHelp.cs" />
+    <Compile Include="Apps\UnitConverter\ComboUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\AreaUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\ConversionSet.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\LengthUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\MassUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\SpeedUnit.cs" />
+    <Compile Include="Apps\UnitConverter\Conversions\VolumeUnit.cs" />
+    <Compile Include="Apps\UnitConverter\UnitConverterData.cs" />
+    <Compile Include="Apps\UnitConverter\UnitConverterItem.cs" />
+    <Compile Include="Apps\UnitConverter\UnitConverter.xaml.cs">
+      <DependentUpon>UnitConverter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Helpers.cs" />
+    <Compile Include="Common\ItemCollection.cs" />
+    <Compile Include="Common\JSON.cs" />
+    <Compile Include="Common\TimeViewer.xaml.cs">
+      <DependentUpon>TimeViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Landscape.xaml.cs">
+      <DependentUpon>Landscape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LandscapeControls\MainPageItem.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\SettingsFlyout.xaml.cs">
+      <DependentUpon>SettingsFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\StateManager.cs" />
+    <Compile Include="Common\TitleRow.xaml.cs">
+      <DependentUpon>TitleRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Utilities_StoreKey.pfx" />
+    <None Include="Utilities_TemporaryKey.pfx" />
+    <None Include="XamlTypeInfoBuildTask.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
+    <Page Include="Apps\Calculator\CalcViews\SnappedProgrammer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\SmallScientific.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\SnappedStatistical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\SnappedScientific.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-200.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\WideLogo.scale-100.png" />
+    <Content Include="Assets\WideLogo.scale-200.png" />
+    <Content Include="Callisto.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Common\bluepixel.png" />
+    <Page Include="Apps\UnitConverter\UnitConverter_LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Apps\UnitConverter\Assets\bluepixel.png" />
+    <Content Include="Assets\AboutPage\David.jpg" />
+    <Content Include="Assets\AboutPage\Jason.jpg" />
+    <Content Include="Assets\AboutPage\Matt.jpg" />
+    <Content Include="Assets\BCBar\BreadCrumbBelt.png" />
+    <Content Include="Assets\BCBar\Buckle.png" />
+    <Content Include="Assets\BCBar\SingleBuckle.png" />
+    <Content Include="Assets\GridViewTiles\Acceleration.png" />
+    <Content Include="Assets\GridViewTiles\Angles.png" />
+    <Content Include="Assets\GridViewTiles\Area.png" />
+    <Content Include="Assets\GridViewTiles\Calculator.png" />
+    <Content Include="Assets\GridViewTiles\Current.png" />
+    <Content Include="Assets\GridViewTiles\Distance.png" />
+    <Content Include="Assets\GridViewTiles\Mass.png" />
+    <Content Include="Assets\GridViewTiles\Notepad.png" />
+    <Content Include="Assets\GridViewTiles\PCalendar.png" />
+    <Content Include="Assets\GridViewTiles\Programmer.png" />
+    <Content Include="Assets\GridViewTiles\Scientific.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Acceleration.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\AlarmClock.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Angles.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Area.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Calculator.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Cooking.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Current.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Density.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Distance.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Energy.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Flow.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Force.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Frequency.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Gizmo.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Light.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Mass.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Notepad.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\PCalendar.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Power.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Pressure.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Programmer.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Scientific.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Speed.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Statistics.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\StopWatch.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Todo.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Torque.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\UnitConverter.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Viscosity.png" />
+    <Content Include="Assets\GridViewTiles\Snapped\Volume.png" />
+    <Content Include="Assets\GridViewTiles\Speed.png" />
+    <Content Include="Assets\GridViewTiles\Statistics.png" />
+    <Content Include="Assets\GridViewTiles\StopWatch.png" />
+    <Content Include="Assets\GridViewTiles\Todo.png" />
+    <Content Include="Assets\GridViewTiles\UnitConverter.png" />
+    <Content Include="Assets\GridViewTiles\Volume.png" />
+    <Content Include="Bugs\All.txt" />
+    <Page Include="Apps\Calculator\CalcViews\PortraitStatistical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\PortraitProgrammer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\Calc_LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\BreadCrumbItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\TimeViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Landscape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\SettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\Calc_MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\MemoryItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\PortraitScientific.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\Programmer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\Scientific.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\Calculator\CalcViews\Statistical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="Apps\PCalender\Bugs.txt" />
+    <Page Include="Apps\PCalender\Views\AddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Apps\PCalender\Views\EditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Apps\Calculator\Assets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Calculator\Assets\SmallLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Calculator\Assets\SplashScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Calculator\Assets\StoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Calculator\Assets\WideLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Notepad\Assets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Notepad\Assets\SmallLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Notepad\Assets\SplashScreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Notepad\Assets\StoreLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Apps\Notepad\Assets\widelogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Apps\Notepad\Notepad_MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Apps\PCalender\PCal_MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Apps\PCalender\CalendarDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Apps\PCalender\CalendarMonth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Apps\UnitConverter\UnitConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\TitleRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Callisto">
+      <HintPath>.\Callisto.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
